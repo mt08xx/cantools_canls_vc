@@ -31,7 +31,25 @@
 #include <stdio.h>
 #include <string.h>
 #include <getopt.h>
+#if 0
 #include <libgen.h>
+#else
+#include <stdlib.h>
+char path_buffer[_MAX_PATH];
+char drive[_MAX_DRIVE];
+char dir[_MAX_DIR];
+char fname[_MAX_FNAME];
+char ext[_MAX_EXT];
+
+char *dirname(char *path) {
+    _splitpath(path, drive, dir, fname, ext);
+    return dir;
+}
+char *basename(char *path) { 
+    _splitpath(path, drive, dir, fname, ext);
+    return fname;
+}
+#endif
 #include <getopt.h>
 
 #include <dbcModel.h>
